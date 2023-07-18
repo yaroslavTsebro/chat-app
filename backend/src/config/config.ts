@@ -42,6 +42,10 @@ export const config = {
       expiresInRefresh: process.env.REFRESH_EXP ||
           DefaultConfigValues.REFRESH_EXP,
       expiresInAccess: process.env.ACCESS_EXP || DefaultConfigValues.ACCESS_EXP,
+    },
+    logger: {
+      level: process.env.LOGGER_LEVEL || DefaultConfigValues.LOGGER_LEVEL,
+      path: process.env.LOGS_PATH || DefaultConfigValues.LOGS_PATH
     }
   }
 }
