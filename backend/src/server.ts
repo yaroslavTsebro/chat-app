@@ -8,8 +8,8 @@ import { pinoHttp } from 'pino-http';
 import { mainRouter } from './route';
 import { errorHandlerMiddleware } from './middleware/error-handler-middleware';
 import connect from './db/connect';
-import {config} from "./config/config";
-import { Server as SocketServer } from 'socket.io';
+import { config } from './config/config';
+import * as socket from 'socket.io';
 
 export class Server {
   private readonly PORT: number;
@@ -17,7 +17,7 @@ export class Server {
   private readonly httpServer: HttpServer;
 
   constructor() {
-    this.PORT = config.server.port
+    this.PORT = config.server.port;
     this.app = express();
     this.httpServer = createServer(this.app);
     logger.info(`Configured server variables`);
@@ -27,8 +27,8 @@ export class Server {
 
   private configureServer() {
     const corsOptions = {
-      origin: config.server.cors.origin
-    }
+      origin: config.server.cors.origin,
+    };
     this.app.use(
       pinoHttp({
         logger,
@@ -42,8 +42,7 @@ export class Server {
     this.app.use('/api', mainRouter);
     this.app.use(errorHandlerMiddleware);
 
-    //@ts-ignore
-    global.io = new SocketServer(this.httpServer, {cors: corsOptions})
+    global.io = new socket.Server(this.httpServer, { cors: corsOptions });
   }
 
   public async start() {
