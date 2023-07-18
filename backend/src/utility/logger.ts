@@ -3,16 +3,16 @@ import pino from 'pino';
 
 const logger = pino({
   timestamp: true,
-  prettyPrint: {
-    colorize: true,
-    translateTime: true,
-  },
   transport: {
     targets: [
       {
         level: config.server.logger.level,
         target: 'pino-pretty',
-        options: {},
+        options: {
+          levelFirst: true,
+          translateTime: true,
+          colorize: true,
+        },
       },
       {
         level: config.server.logger.level,
