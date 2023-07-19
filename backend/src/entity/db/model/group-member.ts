@@ -1,19 +1,20 @@
 import { model, ObjectId, Schema, Types } from 'mongoose';
 
-export interface IOtp {
+export interface IGroupMember {
   _id: ObjectId;
   user: ObjectId;
-  code: string;
   createdAt: Date;
   updatedAt?: Date;
 }
 
-const otpSchema = new Schema<IOtp>(
+const groupMemberSchema = new Schema<IGroupMember>(
   {
-    code: { type: String, required: true },
     user: { type: Types.ObjectId, ref: 'User' },
   },
   { timestamps: true }
 );
 
-export const Otp = model<IOtp>('Otp', otpSchema);
+export const GroupMember = model<IGroupMember>(
+  'GroupMember',
+  groupMemberSchema
+);

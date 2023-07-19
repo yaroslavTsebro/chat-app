@@ -1,4 +1,4 @@
-import {model, ObjectId, Schema, Types} from 'mongoose';
+import { model, ObjectId, Schema, Types } from 'mongoose';
 
 export interface IToken {
   _id: ObjectId;
@@ -11,7 +11,7 @@ export interface IToken {
 const tokenSchema = new Schema<IToken>(
   {
     token: { type: String, required: true, index: { unique: true } },
-    user: { type: Types.ObjectId, ref: 'User' }
+    user: { type: Types.ObjectId, ref: 'User' },
   },
   { timestamps: true }
 );
