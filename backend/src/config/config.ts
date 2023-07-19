@@ -29,6 +29,7 @@ export const config = {
     APP_MODE_IS_PROD: env == 'production',
   },
   server: {
+    url: process.env.CLIENT_URL || DefaultConfigValues.CLIENT_URL,
     port: Number(process.env.APP_PORT) || DefaultConfigValues.APP_PORT,
     jwt: {
       accessSecret:
@@ -37,6 +38,9 @@ export const config = {
         process.env.REFRESH_SECRET || DefaultConfigValues.REFRESH_SECRET,
       expiresInRefresh:
         process.env.REFRESH_EXP || DefaultConfigValues.REFRESH_EXP,
+      expiresInRefreshCookie:
+        Number(process.env.REFRESH_COOKIE_EXP) ||
+        DefaultConfigValues.REFRESH_COOKIE_EXP,
       expiresInAccess: process.env.ACCESS_EXP || DefaultConfigValues.ACCESS_EXP,
     },
     logger: {
@@ -45,6 +49,19 @@ export const config = {
     },
     cors: {
       origin: '*',
-    }
+    },
+    otp: {
+      expires: process.env.EXP_TIME_OTP || DefaultConfigValues.EXP_TIME_OTP,
+      secret: process.env.SECRET_OTP || DefaultConfigValues.SECRET_OTP,
+    },
+  },
+  mailer: {
+    username: process.env.EMAIL_USER || DefaultConfigValues.EMAIL_USER,
+    from: process.env.EMAIL_FROM || DefaultConfigValues.EMAIL_FROM,
+    password: process.env.EMAIL_PASS || DefaultConfigValues.EMAIL_PASS,
+    port: Number(process.env.EMAIL_PORT) || DefaultConfigValues.EMAIL_PORT,
+    security:
+      Boolean(process.env.EMAIL_SECURITY) || DefaultConfigValues.EMAIL_SECURITY,
+    host: process.env.EMAIL_HOST || DefaultConfigValues.EMAIL_HOST,
   },
 };

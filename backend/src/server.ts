@@ -7,9 +7,10 @@ import cookieParser from 'cookie-parser';
 import { pinoHttp } from 'pino-http';
 import { mainRouter } from './route';
 import { errorHandlerMiddleware } from './middleware/error-handler-middleware';
-import connect from './db/connect';
+
 import { config } from './config/config';
 import * as socket from 'socket.io';
+import { db } from './entity/db/connect';
 
 export class Server {
   private readonly PORT: number;
@@ -34,7 +35,7 @@ export class Server {
         logger,
       })
     );
-    connect().then();
+    db().then();
     this.app.use(cors(corsOptions));
     this.app.use(cookieParser());
     this.app.use(express.json());

@@ -23,32 +23,6 @@ export class ErrorMessages {
   public static readonly DATA_NOT_FOUND = 'Data not found';
   public static readonly FORBIDDEN = 'Dont have such access';
   public static readonly ID_IS_NEGATIVE = 'Id must be positive';
-  public static readonly VALUE_IS_TOO_LONG =
-    ' must not be over this amount of characters: ';
-  public static readonly VALUE_IS_TOO_SHORT =
-    ' must not be less than this amount of characters: ';
-  public static readonly VALUE_MUST_BE_STRING = ' must be string';
-  public static readonly VALUE_MUST_BE_EMAIL = ' must be email';
   public static readonly OWNER_IS_ALREADY_ADMIN = 'Owner is already admin';
   public static readonly ALREADY_STARTED = 'Task is already started';
-  public static readonly EMAIL_MUST_BE_EMAIL =
-    'Email' + ErrorMessages.VALUE_MUST_BE_EMAIL;
-  public static readonly PASSWORD_IS_TOO_LONG =
-    'Password' + ErrorMessages.VALUE_IS_TOO_LONG;
-  public static readonly PASSWORD_IS_TOO_SHORT =
-    'Password' + ErrorMessages.VALUE_IS_TOO_SHORT;
-  public static readonly USERNAME_IS_TOO_LONG =
-    'Username' + ErrorMessages.VALUE_IS_TOO_LONG;
-  public static readonly USERNAME_IS_TOO_SHORT =
-    'Username' + ErrorMessages.VALUE_IS_TOO_SHORT;
-  public static readonly EMAIL_IS_TOO_LONG =
-    'Email' + ErrorMessages.VALUE_IS_TOO_LONG;
-  public static readonly EMAIL_IS_TOO_SHORT =
-    'Email' + ErrorMessages.VALUE_IS_TOO_SHORT;
-  public static readonly USERNAME_MUST_BE_STRING =
-    'Username' + ErrorMessages.VALUE_MUST_BE_STRING;
-  public static readonly EMAIL_MUST_BE_STRING =
-    'Email' + ErrorMessages.VALUE_MUST_BE_STRING;
-  public static readonly PASSWORD_MUST_BE_STRING =
-    'Password' + ErrorMessages.VALUE_MUST_BE_STRING;
 }
