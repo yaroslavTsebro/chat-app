@@ -1,6 +1,6 @@
 import { model, ObjectId, Schema, Types } from 'mongoose';
 import { IAvatar } from './avatar';
-import { GroupType } from './group-type';
+import { GroupTypeEnum } from './group-type-enum';
 
 export interface IGroup {
   _id: ObjectId;
@@ -9,7 +9,7 @@ export interface IGroup {
   owner: ObjectId;
   name: string;
   avatars: IAvatar[];
-  type: GroupType;
+  type: GroupTypeEnum;
   createdAt: Date;
   updatedAt?: Date;
 }
@@ -22,8 +22,8 @@ const groupSchema = new Schema<IGroup>(
     avatars: [{ type: Types.ObjectId, ref: 'Avatar' }],
     type: {
       type: String,
-      enum: Object.values(GroupType),
-      default: GroupType.P2P,
+      enum: Object.values(GroupTypeEnum),
+      default: GroupTypeEnum.P2P,
     },
   },
   { timestamps: true }

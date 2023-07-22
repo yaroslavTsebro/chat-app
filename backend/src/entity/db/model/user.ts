@@ -15,7 +15,7 @@ const userSchema = new Schema<IUser>(
   {
     username: { type: String, required: true, index: { unique: true } },
     email: { type: String, required: true, index: { unique: true } },
-    password: { type: String, required: true },
+    password: { type: String, required: true, select: false },
     isVerified: { type: Boolean, default: false },
     isBlocked: { type: Boolean, default: false },
   },
