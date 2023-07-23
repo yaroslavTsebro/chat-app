@@ -7,3 +7,8 @@ declare global {
     var io: socket.Server;
   }
 }
+declare module 'socket.io' {
+  interface Socket {
+    user: UserJWTData;
+  }
+}

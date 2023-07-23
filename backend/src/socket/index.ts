@@ -1,3 +1,3 @@
-global.io.on('connect', ()=>{
+io.on('connection', ()=>{
 
 })
