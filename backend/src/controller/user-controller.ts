@@ -7,9 +7,9 @@ import { LoginUserDto } from '../entity/dto/user/login-user-dto';
 import { config } from '../config/config';
 
 class UserController {
-  async findById(req: Request, res: Response, next: NextFunction) {
+  async findSelf(req: Request, res: Response, next: NextFunction) {
     try {
-      const id = req.params.id;
+      const id = req.user.id;
       const user = await userService.findById(id);
       res.json(user).end();
     } catch (e) {
@@ -77,7 +77,7 @@ class UserController {
       await userService.activate(activationLink);
 
       logger.info('activate ended');
-      return res.json({ Success: true }).end();
+      return res.json({ success: true }).end();
     } catch (e) {
       next(e);
     }
@@ -91,7 +91,7 @@ class UserController {
       await userService.createAndSendOtp(userId);
 
       logger.info('sendOtp ended');
-      return res.json({ Success: true });
+      return res.json({ success: true });
     } catch (e) {
       next(e);
     }
