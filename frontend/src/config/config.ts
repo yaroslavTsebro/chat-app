@@ -4,5 +4,6 @@ export const config = {
   },
   server: {
     url: process.env.SERVER_URL,
-  }
+  },
+  isDev: process.env.APP_IS_DEV
 }
