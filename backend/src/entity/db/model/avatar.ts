@@ -8,6 +8,8 @@ export interface IAvatar {
   scale: number;
   x: number;
   y: number;
+  createdAt: Date;
+  updatedAt?: Date;
 }
 
 export const avatarSchema = new Schema<IAvatar>(

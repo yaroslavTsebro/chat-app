@@ -4,6 +4,7 @@ import { authorizationMiddleware } from '../middleware/authorization-middleware'
 
 let router = express.Router();
 router.post('/registration', userController.registration);
+router.post('/self', userController.findSelf);
 router.post('/login', userController.login);
 router.post('/logout', authorizationMiddleware, userController.logout);
 router.post('/activate/:link', userController.activate);

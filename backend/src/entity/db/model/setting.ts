@@ -8,6 +8,8 @@ export interface ISetting {
   enterToSend: boolean;
   mute: boolean;
   sortByContacts: boolean;
+  createdAt: Date;
+  updatedAt?: Date;
 }
 
 const settingsSchema = new Schema<ISetting>(
@@ -25,4 +27,4 @@ const settingsSchema = new Schema<ISetting>(
   { timestamps: true }
 );
 
-export const Avatar = model<ISetting>('Setting', settingsSchema);
+export const Setting = model<ISetting>('Setting', settingsSchema);

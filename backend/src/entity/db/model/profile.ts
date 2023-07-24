@@ -7,6 +7,7 @@ export interface IProfile {
   avatars: IAvatar[];
   username: string;
   bio: string;
+  lastSeen: Date;
   createdAt: Date;
   updatedAt?: Date;
 }
@@ -16,6 +17,7 @@ const profileSchema = new Schema<IProfile>(
     user: { type: Types.ObjectId, ref: 'User' },
     username: { type: String, required: true },
     bio: { type: String },
+    lastSeen: { type: Date },
     avatars: [{ type: Types.ObjectId, ref: 'Avatar' }],
   },
   { timestamps: true }

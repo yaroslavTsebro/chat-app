@@ -6,6 +6,8 @@ export interface IFile {
   format: string;
   size: string;
   type: string;
+  createdAt: Date;
+  updatedAt?: Date;
 }
 
 const fileSchema = new Schema<IFile>(
