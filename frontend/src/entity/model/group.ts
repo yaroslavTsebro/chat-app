@@ -1,7 +1,7 @@
 import {Avatar} from "./avatar";
 import {GroupTypeEnum} from "./group-type-enum";
 
-export interface Group {
+export class Group {
   _id: string;
   roomId: string;
   members: string[];

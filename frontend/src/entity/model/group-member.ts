@@ -1,4 +1,4 @@
-export interface GroupMember {
+export class GroupMember {
   _id: string;
   user: string;
   createdAt: Date;

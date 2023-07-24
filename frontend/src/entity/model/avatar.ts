@@ -1,4 +1,4 @@
-export interface Avatar {
+export class Avatar {
   _id: string;
   user: string;
   file: string;

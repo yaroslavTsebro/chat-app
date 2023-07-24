@@ -1,4 +1,4 @@
-export interface Token {
+export class Token {
   _id: string;
   token: string;
   user: string;

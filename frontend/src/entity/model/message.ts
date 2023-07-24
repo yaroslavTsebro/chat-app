@@ -1,6 +1,6 @@
 import {User} from "./user";
 
-export interface Message {
+export class Message {
   _id: string;
   groupId: string;
   parentMessage?: string;

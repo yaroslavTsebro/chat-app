@@ -1,6 +1,4 @@
-
-
-export interface Otp {
+export class Otp {
   _id: string;
   user: string;
   code: string;
