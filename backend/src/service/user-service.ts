@@ -19,6 +19,7 @@ import OtpService from './otp-service';
 import { IOtp } from '../entity/db/model/otp';
 import { Mailer } from '../utility/mailer';
 import OtpRepository from '../repository/otp-repository';
+import settingsRepository from '../repository/settings-repository';
 
 type TokenResponse = Promise<{
   accessToken: string;
@@ -60,6 +61,7 @@ class UserService extends ServiceHelper {
       dto.password = await bcrypt.hash(dto.password, salt);
 
       const createdUser = await userRepository.create(dto, session);
+      await settingsRepository.createDefault(createdUser._id, session);
 
       const tokenPayload = new TokenPayload(
         createdUser._id.toString(),
