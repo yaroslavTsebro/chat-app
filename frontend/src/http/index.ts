@@ -1,21 +1,25 @@
 import axios from "axios";
 import { config } from "../config/config";
-import { AuthResponse } from "../entity/response/auth-response";
+import { AuthResponse } from "../entity/response/user/auth-response";
 
 const BASE_URL = config.server.url;
-const TOKEN_NAME = "refreshToken";
+const TOKEN_NAME = "accessToken";
 
-const api = axios.create({
+const $host = axios.create({
+  baseURL: process.env.REACT_APP_API_URL,
+});
+
+const $authHost = axios.create({
   withCredentials: true,
   baseURL: BASE_URL,
 });
 
-api.interceptors.request.use((config) => {
+$authHost.interceptors.request.use((config) => {
   config.headers.Authorization = `Bearer ${localStorage.getItem(TOKEN_NAME)}`;
   return config;
 });
 
-api.interceptors.response.use(
+$authHost.interceptors.response.use(
   (config) => {
     return config;
   },
@@ -28,15 +32,15 @@ api.interceptors.response.use(
     ) {
       originalRequest._isRetry = true;
       try {
-        const response = await axios.get<AuthResponse>(`${BASE_URL}/refresh`, {
+        const response = await axios.get<AuthResponse>(`${BASE_URL}/api/user/refresh`, {
           withCredentials: true,
         });
         localStorage.setItem(TOKEN_NAME, response.data.accessToken);
-        return api.request(originalRequest);
+        return $authHost.request(originalRequest);
       } catch (e) {}
     }
     throw error;
   },
 );
 
-export default api;
+export { $host, $authHost };
