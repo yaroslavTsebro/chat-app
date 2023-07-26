@@ -1,17 +1,7 @@
-FROM node:18-alpine
-
-COPY package.json /app/package.json
-
-WORKDIR /app
-
-RUN npm install
-
-COPY . .
-
-RUN yarn build
-
-EXPOSE 3000
-
+FROM node:18
+COPY package*.json ./
+RUN npm install --production
 RUN npm run build
-
-CMD ["npm", "run", "start-prod"]
+COPY dist .
+EXPOSE 3000
+CMD [ "npm", "run", "start-prod" ]
