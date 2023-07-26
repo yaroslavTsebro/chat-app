@@ -1,6 +1,6 @@
 import { IToken, Token } from '../entity/db/model/token';
 import logger from '../utility/logger';
-import { ClientSession } from 'mongoose';
+import { ClientSession, ObjectId } from 'mongoose';
 
 class TokenRepository {
   public async create() {}
@@ -16,7 +16,7 @@ class TokenRepository {
 
   public async deleteByToken(token: string): Promise<IToken | null> {
     try {
-      return await Token.findOneAndDelete({token: token});
+      return await Token.findOneAndDelete({ token: token });
     } catch (e) {
       logger.error('Occurred in token repository');
       throw e;
@@ -51,31 +51,36 @@ class TokenRepository {
   }
 
   public async updateOrCreateToken(
-    userId: string,
+    userId: ObjectId,
     token: string,
     session: ClientSession
   ): Promise<IToken | null>;
   public async updateOrCreateToken(
-    userId: string,
+    userId: ObjectId,
     token: string
   ): Promise<IToken | null>;
   public async updateOrCreateToken(
-    userId: string,
+    userId: ObjectId,
     token: string,
     session?: ClientSession
   ): Promise<IToken | null> {
     try {
       if (session) {
-        return await Token.findByIdAndUpdate(
+        return await Token.findOneAndUpdate(
           { user: userId },
           { token: token },
-          { upsert: true, session: session }
+          {
+            upsert: true,
+            new: true,
+            setDefaultsOnInsert: true,
+            session: session,
+          }
         );
       } else {
         return await Token.findOneAndUpdate(
           { user: userId },
           { token: token },
-          { upsert: true }
+          { upsert: true, new: true, setDefaultsOnInsert: true }
         );
       }
     } catch (e) {

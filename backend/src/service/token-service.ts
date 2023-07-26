@@ -1,4 +1,4 @@
-import { ClientSession } from 'mongoose';
+import {ClientSession, ObjectId} from 'mongoose';
 import TokenRepository from '../repository/token-repository';
 import { AppError } from '../entity/error/app-error';
 import { ErrorCodes } from '../constant/error-codes';
@@ -8,13 +8,13 @@ import { IToken } from '../entity/db/model/token';
 
 class TokenService {
   public async saveToken(
-    userId: string,
+    userId: ObjectId,
     token: string,
     session: ClientSession
   ): Promise<IToken>;
-  public async saveToken(userId: string, token: string): Promise<IToken>;
+  public async saveToken(userId: ObjectId, token: string): Promise<IToken>;
   public async saveToken(
-    userId: string,
+    userId: ObjectId,
     token: string,
     session?: ClientSession
   ): Promise<IToken> {

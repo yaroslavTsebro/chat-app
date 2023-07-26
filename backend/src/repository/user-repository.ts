@@ -16,9 +16,9 @@ class UserRepository {
 
   public async findByEmail(email: string): Promise<IUser | null> {
     try {
-      return await User.findOne({ email: email });
+      return await User.findOne({ email: email }).select('+password').exec();
     } catch (e) {
-      logger.error('Occurred in user repository', email);
+      logger.error('Error occurred in user repository', e);
       throw e;
     }
   }
@@ -61,6 +61,8 @@ class UserRepository {
       throw e;
     }
   }
+
+
 
   async updateUserIsVerified(userId: string) {
     try {

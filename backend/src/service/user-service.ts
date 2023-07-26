@@ -47,6 +47,7 @@ class UserService extends ServiceHelper {
 
   async register(dto: CreateUserDto): Promise<TokenResponse> {
     const session = await mongoose.startSession();
+    session.startTransaction();
     try {
       UserService.validateDto(dto);
       const user = await userRepository.findByEmail(dto.email);
@@ -56,7 +57,6 @@ class UserService extends ServiceHelper {
           ErrorMessages.ALREADY_HAVE_AN_ACC
         );
       }
-      session.startTransaction();
       const salt = await bcrypt.genSalt();
       dto.password = await bcrypt.hash(dto.password, salt);
 
@@ -76,7 +76,7 @@ class UserService extends ServiceHelper {
 
       const tokens = Jwt.generateTokens(tokenPayload);
       await TokenService.saveToken(
-        createdUser._id.toString(),
+        createdUser._id,
         tokens.refreshToken,
         session
       );
@@ -97,7 +97,7 @@ class UserService extends ServiceHelper {
       UserService.validateDto(dto);
 
       const currentUser = await userRepository.findByEmail(dto.email);
-
+      console.log(currentUser);
       if (!currentUser) {
         throw new AppError(
           ErrorCodes.DONT_HAVE_SUCH_ACC,
@@ -117,7 +117,7 @@ class UserService extends ServiceHelper {
 
       const tokens = Jwt.generateTokens(tokenPayload);
       await TokenService.saveToken(
-        currentUser._id.toString(),
+        currentUser._id,
         tokens.refreshToken
       );
 
@@ -173,7 +173,7 @@ class UserService extends ServiceHelper {
         user.isVerified
       );
       const tokens = Jwt.generateTokens(dto);
-      await TokenService.saveToken(dto._id, tokens.refreshToken);
+      await TokenService.saveToken(user._id, tokens.refreshToken);
 
       return { ...tokens, user: dto };
     } catch (e) {

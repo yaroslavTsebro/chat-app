@@ -86,7 +86,7 @@ class UserController {
   async sendOtp(req: Request, res: Response, next: NextFunction) {
     try {
       logger.info('sendOtp started');
-      const userId = req.user.id;
+      const userId = req.user._id;
       logger.info('userId: ', userId);
       await userService.createAndSendOtp(userId);
 

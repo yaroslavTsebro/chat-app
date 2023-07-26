@@ -8,7 +8,6 @@ export class Mailer {
   private readonly FROM = config.mailer.from;
   private readonly PASSWORD = config.mailer.password;
   private readonly PORT = config.mailer.port;
-  private readonly SECURITY = config.mailer.security;
   private readonly HOST = config.mailer.host;
   private transporter;
 
@@ -16,7 +15,6 @@ export class Mailer {
     const transporterOptions: SMTPTransport.Options = {
       host: this.HOST,
       port: this.PORT,
-      secure: this.SECURITY,
       auth: {
         user: this.SENDER,
         pass: this.PASSWORD,
