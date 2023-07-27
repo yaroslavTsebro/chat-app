@@ -379,3 +379,9 @@
 {"level":50,"time":1690297176587,"pid":24740,"hostname":"DESKTOP-5ABHPS7","msg":"Occurred during login"}
 {"level":30,"time":1690297176587,"pid":24740,"hostname":"DESKTOP-5ABHPS7","msg":"Error in error handler: "}
 {"level":30,"time":1690297176588,"pid":24740,"hostname":"DESKTOP-5ABHPS7","req":{"id":2,"method":"POST","url":"/api/user/login","query":{},"params":{},"headers":{"content-type":"application/json","authorization":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc1ZlcmlmaWVkIjpmYWxzZSwiaWQiOjEzLCJlbWFpbCI6ImVtYWlsNUBnbWFpbC5jb20iLCJpYXQiOjE2ODc4NjkxMTksImV4cCI6MTY4Nzg3MDMxOX0.BPdHL-pE400DRI_vb83cusumfivRvS7VjNgEXlyI364","user-agent":"PostmanRuntime/7.32.3","accept":"*/*","postman-token":"5c3bec97-e4e9-4e80-8f0d-4841943d2b5e","host":"localhost:3000","accept-encoding":"gzip, deflate, br","connection":"keep-alive","content-length":"100"},"remoteAddress":"::1","remotePort":49694},"res":{"statusCode":401,"headers":{"x-powered-by":"Express","access-control-allow-origin":"*","content-type":"application/json; charset=utf-8","content-length":"41","etag":"W/\"29-kSgKG04Iz1BgMpJ1jHErVz3wSDs\""}},"responseTime":201,"msg":"request completed"}
+{"level":30,"time":1690366115229,"pid":18512,"hostname":"DESKTOP-5ABHPS7","msg":"Configured server variables"}
+{"level":30,"time":1690366115230,"pid":18512,"hostname":"DESKTOP-5ABHPS7","msg":"mongodb+srv://yaroslavcebro:jZU6uoD86JqdLMfh@cluster0.sryeyft.mongodb.net/?retryWrites=true&w=majority"}
+{"level":30,"time":1690366115244,"pid":18512,"hostname":"DESKTOP-5ABHPS7","msg":"Configured app settings"}
+{"level":30,"time":1690366116348,"pid":18512,"hostname":"DESKTOP-5ABHPS7","msg":"Server is working on 3000"}
+{"level":30,"time":1690366116348,"pid":18512,"hostname":"DESKTOP-5ABHPS7","msg":"Server started apply configurations"}
+{"level":30,"time":1690366117960,"pid":18512,"hostname":"DESKTOP-5ABHPS7","msg":"database connected"}

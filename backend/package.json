@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start-dev": "npx nodemon",
+    "start-dev": "npx nodemon --inspect=0.0.0.0:9229 --signal SIGINT --nolazy",
     "build": "tsc --outDir dist src/**/*.ts",
     "start-prod": "node dist/app.js",
     "lint": "eslint --ignore-path .eslintignore --ext .js,.ts ."

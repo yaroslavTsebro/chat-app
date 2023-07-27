@@ -3,10 +3,10 @@ import * as fs from 'fs';
 import dotenv from 'dotenv';
 import { DefaultConfigValues } from '../constant/default-config-values';
 
-let env = process.env.NODE_ENV;
+const env = process.env.NODE_ENV;
 fs.access(
   ConfigValues.CONFIG_PATH + ConfigValues.ENV_EXTENSION + env,
-  (err) => {
+  () => {
     dotenv.config({
       path: ConfigValues.CONFIG_PATH + ConfigValues.DEVELOPMENT_EVN,
     });

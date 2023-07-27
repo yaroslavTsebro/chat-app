@@ -1,10 +1,10 @@
 export class DefaultConfigValues {
   public static readonly DB_HOST = 'host.docker.internal';
-  public static readonly DB_NAME = 'database';
-  public static readonly DB_USER = 'yaroslavcebro';
-  public static readonly DB_PASSWORD = 'jZU6uoD86JqdLMfh';
+  public static readonly DB_NAME = 'mydb';
+  public static readonly DB_USER = 'user';
+  public static readonly DB_PASSWORD = 'password';
   public static readonly DB_TYPE = 'mongodb';
-  public static readonly DB_PORT = 5432;
+  public static readonly DB_PORT = 27017;
   public static readonly APP_PORT = 3000;
 
   public static readonly ACCESS_SECRET = 'geferfefefefreerf';
@@ -14,7 +14,7 @@ export class DefaultConfigValues {
   public static readonly ACCESS_EXP = '20m';
 
   public static readonly LOGGER_LEVEL = 'info';
-  public static readonly LOGS_PATH = '../../data/logs/pino-logger.log';
+  public static readonly LOGS_PATH = '../data/logs/pino-logger.log';
 
   public static readonly EXP_TIME_OTP = '1h';
   public static readonly SECRET_OTP = '60 * 60';
