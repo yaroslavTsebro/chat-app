@@ -18,9 +18,13 @@ services:
     networks:
       - my_network
     volumes:
-      - "D:/web projects/chat-app/backend/data/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro"
-      - "D:/web projects/chat-app/backend/data/db:/data/db"
-      - "D:/web projects/chat-app/backend/data/logs/db:/var/log/mongodb"
+      - ./data/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - ./data/db:/data/db
+      - ./data/logs/db:/var/log/mongodb
+      # - ./backend/data/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      # - ./backend/data/db:/data/db
+      # - ./backend/data/logs/db:/var/log/mongodb
+
   mongo-express:
     image: mongo-express:latest
     container_name: mongo-express
@@ -39,12 +43,13 @@ services:
       - my_network
     depends_on:
       - mongodb
+      
   backend:
     networks:
       - my_network
     build:
-      context: /backend
-      dockerfile: /Dockerfile.development
+      context: .
+      dockerfile: Dockerfile.dev
     depends_on:
       - mongodb
     ports:  
@@ -57,7 +62,8 @@ services:
       DB_HOST: "mongodb"
       DB_PORT: 27017
       DB_NAME: mydb1
-
-
-  # - ./backend/data/db:/data/db
-  # - ./backend/data/logs/db:/var/log/mongodb
+      LOGS_PATH: "./data/logs/pino-logger.log"
+    volumes:
+      # - "D:/web projects/chat-app/backend/data/logs/pino-logger.log:/node-app/src/data/logs/pino-logger.log"
+      # - "D:/web projects/chat-app/backend/src:/src"
+      - ./src:/usr/app/src

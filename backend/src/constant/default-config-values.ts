@@ -14,8 +14,8 @@ export class DefaultConfigValues {
   public static readonly ACCESS_EXP = '20m';
 
   public static readonly LOGGER_LEVEL = 'info';
-  public static readonly LOGS_PATH = '../data/logs/pino-logger.log';
-
+  public static readonly LOGS_PATH = 'data/logs/pino-logger.log';
+  
   public static readonly EXP_TIME_OTP = '1h';
   public static readonly SECRET_OTP = '60 * 60';
 

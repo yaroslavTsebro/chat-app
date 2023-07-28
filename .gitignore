@@ -3,6 +3,6 @@
 /backend/package-lock.json
 /frontend/package-lock.json
 /backend/**/dist
-.vscode
+/backend/.vscode
 /backend/data/db/*
 /backend/data/logs/*

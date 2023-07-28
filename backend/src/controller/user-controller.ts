@@ -40,7 +40,7 @@ class UserController {
       res.json(data).end();
     } catch (e) {
       logger.error('Occurred during login');
-      next(e);
+      next(e); 
     }
   }
 

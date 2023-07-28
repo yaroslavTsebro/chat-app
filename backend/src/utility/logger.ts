@@ -1,5 +1,12 @@
 import { config } from '../config/config';
+import fs from 'node:fs';
 import pino from 'pino';
+
+const logDirectory = config.server.logger.path.substring(
+  0,
+  config.server.logger.path.lastIndexOf('/')
+);
+fs.mkdirSync(logDirectory, { recursive: true });
 
 const logger = pino({
   timestamp: true,

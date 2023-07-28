@@ -1,7 +1,8 @@
 FROM node:18
+WORKDIR /usr/app
 RUN npm install nodemon bcrypt  -g
 COPY package*.json ./
 RUN npm install --force
-COPY . .
+COPY . ./
 EXPOSE 3000
 CMD [ "npm", "run", "start-dev" ]
