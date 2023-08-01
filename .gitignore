@@ -6,3 +6,6 @@
 /backend/.vscode
 /backend/data/db/*
 /backend/data/logs/*
+/backend/coverage
+/backend/data/logs/pino-logger.log
+/backend/data/db/*

@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start-dev": "nodemon -L --inspect=0.0.0.0:9229 --signal SIGINT --nolazy src/app.ts",
+    "start-dev": "nodemon -L --inspect-brk=0.0.0.0:9229 --signal SIGINT --nolazy src/app.ts",
     "build": "tsc --outDir dist src/**/*.ts",
     "start-prod": "node dist/app.js",
-    "lint": "eslint --ignore-path .eslintignore --ext .js,.ts ."
+    "lint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
+    "test": "jest --runInBand --inspect-brk=0.0.0.0:9229"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +22,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "express-fileupload": "^1.4.0",
     "jsonwebtoken": "^9.0.1",
     "mongoose": "^7.3.4",
     "nodemailer": "^6.9.3",
@@ -36,6 +38,7 @@
     "@types/cookie-parser": "^1.4.3",
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
+    "@types/express-fileupload": "^1.4.1",
     "@types/jest": "^29.5.3",
     "@types/jsonwebtoken": "^9.0.2",
     "@types/node": "^20.4.2",

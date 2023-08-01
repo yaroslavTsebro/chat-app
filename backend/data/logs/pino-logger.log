@@ -2,3 +2,10 @@
 {"level":30,"time":1690533440019,"pid":5516,"hostname":"DESKTOP-5ABHPS7","msg":"Configured app settings"}
 {"level":30,"time":1690533440024,"pid":5516,"hostname":"DESKTOP-5ABHPS7","msg":"Server is working on 3000"}
 {"level":30,"time":1690533440024,"pid":5516,"hostname":"DESKTOP-5ABHPS7","msg":"Server started apply configurations"}
+{"level":50,"time":1690812038242,"pid":17600,"hostname":"DESKTOP-5ABHPS7","msg":"Occurred in user repository"}
+{"level":50,"time":1690812156906,"pid":6832,"hostname":"DESKTOP-5ABHPS7","msg":"Occurred in user repository"}
+{"level":30,"time":1690866162092,"pid":1496,"hostname":"DESKTOP-5ABHPS7","msg":"Configured server variables"}
+{"level":30,"time":1690866162111,"pid":1496,"hostname":"DESKTOP-5ABHPS7","msg":"Configured app settings"}
+{"level":30,"time":1690866162129,"pid":1496,"hostname":"DESKTOP-5ABHPS7","msg":"Server is working on 3000"}
+{"level":30,"time":1690866162129,"pid":1496,"hostname":"DESKTOP-5ABHPS7","msg":"Server started apply configurations"}
+{"level":50,"time":1690866192121,"pid":1496,"hostname":"DESKTOP-5ABHPS7","err":{"type":"MongooseServerSelectionError","message":"connect ECONNREFUSED 192.168.0.104:27017","stack":"MongooseServerSelectionError: connect ECONNREFUSED 192.168.0.104:27017\n    at _handleConnectionErrors (D:\\web projects\\chat-app\\backend\\node_modules\\mongoose\\lib\\connection.js:791:11)\n    at NativeConnection.openUri (D:\\web projects\\chat-app\\backend\\node_modules\\mongoose\\lib\\connection.js:766:11)\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)","reason":{"type":"Unknown","servers":{},"stale":false,"compatible":true,"heartbeatFrequencyMS":10000,"localThresholdMS":15,"setName":null,"maxElectionId":null,"maxSetVersion":null,"commonWireVersion":0,"logicalSessionTimeoutMinutes":null}},"msg":"connection failed"}
