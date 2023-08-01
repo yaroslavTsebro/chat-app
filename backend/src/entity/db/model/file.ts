@@ -5,7 +5,6 @@ export interface IFile {
   originalName: string;
   format: string;
   size: string;
-  type: string;
   createdAt: Date;
   updatedAt?: Date;
 }
@@ -15,7 +14,6 @@ const fileSchema = new Schema<IFile>(
     format: { type: String, required: true },
     originalName: { type: String, required: true },
     size: { type: String, required: true },
-    type: { type: String, required: true },
   },
   { timestamps: true }
 );
