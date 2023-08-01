@@ -1,35 +1,48 @@
-import '@types/jest';
-import { faker } from '@faker-js/faker';
-import { IUser, User } from '../../src/entity/db/model/user';
-import { db } from './connection';
+import 'reflect-metadata';
+import { plainToInstance } from 'class-transformer';
 import mongoose from 'mongoose';
-
-export function createRandomUser(): IUser {
-  return {
-    _id: new mongoose.Types.ObjectId(faker.string.uuid()),
-    username: faker.internet.userName(),
-    email: faker.internet.email(),
-    avatar: faker.image.avatar(),
-    password: faker.internet.password(),
-    birthdate: faker.date.birthdate(),
-    registeredAt: faker.date.past(),
-  };
-}
-
-export function insertUser(user: IUser){
-
-}
+import { getUser } from '../utils/factories';
+import userRepository from '../../src/repository/user-repository';
+import { CreateUserDto } from '../../src/entity/dto/user/create-user-dto';
 
 describe('UserRepository', () => {
-  beforeAll(() => {
-    db().then(() => {
-      faker.string.uuid;
-    });
+
+  beforeAll( async () => {
+    try{
+      await mongoose.connect('mongodb+srv://yaroslavcebro:6vXul2Z6gq0oOcmv@cluster0.4jjc9pz.mongodb.net/?retryWrites=true&w=majority');
+      console.log("Connection went successful");
+    } catch(e) {
+      console.log("Connection failed");
+      console.log(e);
+    }
+  })
+
+
+  afterAll(() => {
+    try {
+      mongoose.connection.db.dropDatabase();
+    } catch (e) {
+      console.log(e);
+    }
   });
 
-  describe('create', () => {});
+  describe('create', () => {
+    test('should create user', async () => {
+      try {
+        const session = await mongoose.startSession();
+        session.startTransaction();
+        const user = getUser();
 
-  describe('findById', () => {
-    test('present', () => {});
+        const userForCreating = plainToInstance(CreateUserDto, user);
+        const createdUser = await userRepository.create(
+          userForCreating,
+          session
+        );
+        expect(createdUser).toEqual(user);
+      } catch (e) {
+        console.log(e);
+        throw e;
+      }
+    }, 1000 * 60 * 5); 
   });
 });
