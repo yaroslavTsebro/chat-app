@@ -19,8 +19,6 @@ services:
       - my_network
     volumes:
       - ./data/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
-      - ./data/db:/data/db
-      - ./data/logs/db:/var/log/mongodb
 
   mongo-express:
     image: mongo-express:latest
@@ -46,7 +44,7 @@ services:
       - my_network
     build:
       context: .
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile.test
     depends_on:
       - mongodb
     ports:  
@@ -59,7 +57,6 @@ services:
       DB_HOST: "mongodb"
       DB_PORT: 27017
       DB_NAME: mydb1
-      FILE_PATH: '../data/files'
       LOGS_PATH: "./data/logs/pino-logger.log"
     volumes:
-      - ./src:/usr/app/src
+      - ./__tests__:/usr/app/__test__
