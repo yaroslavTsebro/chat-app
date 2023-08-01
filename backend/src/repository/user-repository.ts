@@ -42,7 +42,7 @@ class UserRepository {
         email: dto.email,
         password: dto.password,
       });
-      return await user.save({session});
+      return await user.save({ session });
     } catch (e) {
       logger.error('Occurred in user repository', dto);
       throw e;
@@ -61,8 +61,6 @@ class UserRepository {
       throw e;
     }
   }
-
-
 
   async updateUserIsVerified(userId: string) {
     try {

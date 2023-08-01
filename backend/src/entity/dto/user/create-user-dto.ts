@@ -1,12 +1,10 @@
 import {
   IsEmail,
-  IsOptional,
   IsString,
   MaxLength,
   MinLength
 } from 'class-validator';
 import { ValidationMessages } from '../../../constant/validation-messages';
-import {UpdateUserDto} from "./update-user-dto";
 
 export class CreateUserDto{
   @IsString({ message: ValidationMessages.EMAIL_MUST_BE_STRING })

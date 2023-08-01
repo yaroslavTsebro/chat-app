@@ -1,7 +1,13 @@
-import { model, ObjectId, Schema } from 'mongoose';
+import { model, ObjectId, Schema, Types } from 'mongoose';
+import { IAvatar } from './avatar';
+
+export interface IUserDocument extends IUser, Document {}
 
 export interface IUser {
   _id: ObjectId;
+  avatars: IAvatar[];
+  bio: string;
+  lastSeen: Date;
   username: string;
   email: string;
   password: string;
@@ -18,6 +24,9 @@ const userSchema = new Schema<IUser>(
     password: { type: String, required: true, select: false },
     isVerified: { type: Boolean, default: false },
     isBlocked: { type: Boolean, default: false },
+    bio: { type: String },
+    lastSeen: { type: Date },
+    avatars: [{ type: Types.ObjectId, ref: 'Avatar' }],
   },
   { timestamps: true }
 );
