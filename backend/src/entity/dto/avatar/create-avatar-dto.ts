@@ -1,5 +1,5 @@
-export class CreateAvatarDto{
-    scale: number;
-    x: number;
-    y: number;
+export class CreateAvatarDto {
+  scale: number;
+  x: number;
+  y: number;
 }
