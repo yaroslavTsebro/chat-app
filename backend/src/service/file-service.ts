@@ -30,6 +30,38 @@ class FileService {
       throw e;
     }
   }
+
+  async createMany(
+    files: UploadedFile[],
+    session: ClientSession
+  ): Promise<IFile[]> {
+    try {
+      const createdFiles: IFile[] = [];
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const fileDto = new CreateFileDto();
+        fileDto.size = file.size;
+        fileDto.originalName = file.name;
+        fileDto.format = file.name.split('.')[-1];
+
+        const createdFile = await fileRepository.create(fileDto, session);
+
+        let filePath;
+        if (process.env.FILE_PATH) {
+          filePath = process.env.FILE_PATH;
+        } else {
+          filePath = '../../data/files';
+        }
+        file.mv(path.resolve(__dirname, filePath, createdFile._id.toString()));
+
+        createdFiles.push( createdFile);
+      }
+      return createdFiles;
+    } catch (e) {
+      logger.error('Error occurred in file service');
+      throw e;
+    }
+  }
 }
 
 export default new FileService();
