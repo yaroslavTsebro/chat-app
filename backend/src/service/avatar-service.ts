@@ -5,12 +5,64 @@ import { ErrorCodes } from '../constant/error-codes';
 import { ErrorMessages } from '../constant/error-messages';
 import { CreateAvatarDto } from '../entity/dto/avatar/create-avatar-dto';
 import logger from '../utility/logger';
-import mongoose from 'mongoose';
+import mongoose, { ClientSession } from 'mongoose';
 import avatarRepository from '../repository/avatar-repository';
 import fileService from './file-service';
 import { IAvatar } from '../entity/db/model/avatar';
 
 class AvatarService extends ServiceHelper {
+  async createForGroup(
+    userId: string,
+    groupId: string,
+    img: UploadedFile | undefined,
+    avatarSettings: CreateAvatarDto,
+    sessionObj?: ClientSession
+  ): Promise<IAvatar> {
+    let session;
+    if (!sessionObj) {
+      session = await mongoose.startSession();
+      session.startTransaction();
+    } else {
+      session = sessionObj;
+    }
+    try {
+      AvatarService.validateId(userId);
+      AvatarService.validateDto(avatarSettings);
+      if (!img) {
+        throw new AppError(ErrorCodes.BAD_REQUEST, ErrorMessages.BAD_REQUEST);
+      }
+      const extension = img.name.split('.')[-1];
+      if (
+        extension !== 'jpg' &&
+        extension !== 'png' &&
+        extension !== 'mp4' &&
+        extension !== 'gif' &&
+        extension !== 'webp'
+      ) {
+        throw new AppError(ErrorCodes.BAD_REQUEST, ErrorMessages.BAD_REQUEST);
+      }
+      const createdFile = await fileService.create(img, session);
+      const avatar = await avatarRepository.create(
+        userId,
+        createdFile._id.toString(),
+        avatarSettings,
+        session,
+        groupId
+      );
+      const result = await avatarRepository.getFullAvatarById(avatar._id);
+      if (!result) {
+        throw new AppError(ErrorCodes.SERVER_ERROR, ErrorMessages.SERVER_ERROR);
+      }
+      return result;
+    } catch (e) {
+      if (!sessionObj) await session.abortTransaction();
+      logger.error('Error occurred in service');
+      throw e;
+    } finally {
+      if (!sessionObj) await session.endSession();
+    }
+  }
+
   async create(
     userId: string,
     img: UploadedFile | undefined,
@@ -85,7 +137,10 @@ class AvatarService extends ServiceHelper {
     }
   }
 
-  async findByUserId(id: string, place: number): Promise<{avatar: IAvatar, count: number}> {
+  async findByUserId(
+    id: string,
+    place: number
+  ): Promise<{ avatar: IAvatar; count: number }> {
     try {
       AvatarService.validateId(id);
       const count = await avatarRepository.countByUserId(id);
@@ -93,9 +148,13 @@ class AvatarService extends ServiceHelper {
         throw new AppError(ErrorCodes.BAD_REQUEST, ErrorMessages.BAD_REQUEST);
       }
 
-      const avatar = await avatarRepository.findByUserIdOrderByCreatedAtAscByPlace(id, place);
+      const avatar =
+        await avatarRepository.findByUserIdOrderByCreatedAtAscByPlace(
+          id,
+          place
+        );
       if (avatar) {
-        return {avatar, count};
+        return { avatar, count };
       }
       throw new AppError(
         ErrorCodes.DATA_NOT_FOUND,
