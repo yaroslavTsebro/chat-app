@@ -4,7 +4,6 @@ import { GroupTypeEnum } from './group-type-enum';
 
 export interface IGroup {
   _id: ObjectId;
-  roomId: ObjectId;
   members: ObjectId[];
   owner: ObjectId;
   name: string;
@@ -16,8 +15,8 @@ export interface IGroup {
 
 const groupSchema = new Schema<IGroup>(
   {
-    name: { type: String, required: true },
-    members: [{ type: Types.ObjectId, ref: 'GroupMember' }],
+    name: { type: String},
+    members: [{ type: Types.ObjectId, ref: 'User'}],
     owner: { type: Types.ObjectId, ref: 'User' },
     avatars: [{ type: Types.ObjectId, ref: 'Avatar' }],
     type: {

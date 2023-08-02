@@ -9,7 +9,6 @@ export interface IMessage {
   sender: ObjectId;
   readBy: IUser[];
   deletedBy: IUser[];
-  sendAt: Date;
   text: string;
   files: IFile[];
   createdAt: Date;

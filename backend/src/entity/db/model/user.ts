@@ -7,6 +7,7 @@ export interface IUser {
   _id: ObjectId;
   avatars: IAvatar[];
   bio: string;
+  online: boolean;
   lastSeen: Date;
   username: string;
   email: string;
@@ -25,6 +26,7 @@ const userSchema = new Schema<IUser>(
     isVerified: { type: Boolean, default: false },
     isBlocked: { type: Boolean, default: false },
     bio: { type: String },
+    online: { type: Boolean, default: false },
     lastSeen: { type: Date },
     avatars: [{ type: Types.ObjectId, ref: 'Avatar' }],
   },
