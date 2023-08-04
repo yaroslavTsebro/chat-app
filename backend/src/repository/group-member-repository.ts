@@ -47,6 +47,41 @@ class GroupMemberRepository {
       throw e;
     }
   }
+
+  async addMessageToUnreadForGroupMembers(
+    groupId: string,
+    messageId: string,
+    session: ClientSession
+  ): Promise<number> {
+    try {
+      const result = await GroupMember.updateMany(
+        { group: groupId },
+        { $push: { unreadMessages: messageId } },
+        { session: session }
+      );
+      return result.modifiedCount;
+    } catch (e) {
+      logger.error('Occurred in group repository');
+      throw e;
+    }
+  }
+
+  async readMessage(
+    groupId: string,
+    messageId: string,
+    userId: string
+  ): Promise<number> {
+    try {
+      const result = await GroupMember.updateOne(
+        { group: groupId, user: userId },
+        { $pull: { unreadMessages: messageId } }
+      );
+      return result.modifiedCount;
+    } catch (e) {
+      logger.error('Occurred in group repository');
+      throw e;
+    }
+  }
 }
 
 export default new GroupMemberRepository();

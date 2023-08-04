@@ -1,5 +1,4 @@
 import { model, ObjectId, Schema, Types } from 'mongoose';
-import { IAvatar } from './avatar';
 import { GroupTypeEnum } from './group-type-enum';
 
 export interface IGroup {
@@ -7,7 +6,7 @@ export interface IGroup {
   members: ObjectId[];
   owner: ObjectId;
   name: string;
-  avatars: IAvatar[];
+  avatars: ObjectId[];
   type: GroupTypeEnum;
   createdAt: Date;
   updatedAt?: Date;

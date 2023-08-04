@@ -4,7 +4,7 @@ export interface IGroupMember {
   _id: ObjectId;
   user: ObjectId;
   group: ObjectId;
-  unreadMessagesIds: ObjectId[];
+  unreadMessages: ObjectId[];
   createdAt: Date;
   updatedAt?: Date;
 }
@@ -13,7 +13,7 @@ const groupMemberSchema = new Schema<IGroupMember>(
   {
     user: { type: Types.ObjectId, ref: 'User' },
     group: { type: Types.ObjectId, ref: 'Group' },
-    unreadMessagesIds: [
+    unreadMessages: [
       { type: Types.ObjectId, ref: 'Message', select: false },
     ],
   },
