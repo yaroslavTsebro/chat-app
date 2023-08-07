@@ -19,19 +19,18 @@ function ErrorPage({
         {title}
       </h1>
       <span className="mt-2">{message}</span>
-      {displayRefresh ? (
+      {/* {displayRefresh ? (
         <a
           href="#"
           className="link-secondary"
-          onClick={() => location.reload()}
         >
           Refresh
         </a>
       ) : (
-        <a href="#" className="link-secondary" onClick={() => history.back()}>
+        <a href="#" className="link-secondary">
           Go Back
         </a>
-      )}
+      )} */} 
     </FullPageContainer>
   );
 }
