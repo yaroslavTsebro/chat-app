@@ -1,6 +1,6 @@
 import React from "react";
 import "./ErrorPage.scss";
-import FullPageContainer from "../FullPageContainer/FullPageContainer";
+import FullPageContainer from "../common/FullPageContainer/FullPageContainer";
 
 interface ErrorPageProps {
   title?: string;
