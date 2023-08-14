@@ -98,7 +98,7 @@ class UserController {
   }
 
   public static addRefreshTokenToCookie(res: Response, token: string) {
-    res.cookie('refreshToken', token, {
+    res.cookie('chat_refreshToken', token, {
       maxAge: config.server.jwt.expiresInRefreshCookie,
       httpOnly: true,
     });

@@ -9,11 +9,11 @@ interface Props {
 export default function Layout({ children, zeroHeightNavbar }: Props) {
   return (
 		<>
-			<Navbar zeroHeight={zeroHeightNavbar} />
+			{/* <Navbar zeroHeight={zeroHeightNavbar} />
 			<div style={{ minHeight: 'calc(100vh - 116px)' }}>
 				{children}
 			</div>
-			<Footer />
+			<Footer /> */}
 		</>
 	);
 }

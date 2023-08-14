@@ -1,4 +1,5 @@
-import useInputAdv from "../../hooks/use-input-adv";
+import useInputAdv from "../../../hooks/use-input-adv";
+
 
 export interface Props {
   name: string;

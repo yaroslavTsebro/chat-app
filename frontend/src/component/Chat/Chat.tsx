@@ -1,14 +1,10 @@
-import React, { useState } from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../redux/store";
+import React, { useState } from "react";
+import axios from "axios";
 
 const Chat: React.FC = () => {
-  const dispatch = useDispatch();
-
-  return (
-      <>
-      </>
-  );
+  return <>
+  
+  </>;
 };
 
 export default Chat;

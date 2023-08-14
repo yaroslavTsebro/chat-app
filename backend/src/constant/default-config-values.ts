@@ -5,7 +5,7 @@ export class DefaultConfigValues {
   public static readonly DB_PASSWORD = 'password';
   public static readonly DB_TYPE = 'mongodb';
   public static readonly DB_PORT = 27017;
-  public static readonly APP_PORT = 3000;
+  public static readonly APP_PORT = 5000;
 
   public static readonly ACCESS_SECRET = 'geferfefefefreerf';
   public static readonly REFRESH_SECRET = 'ferferfrfere';

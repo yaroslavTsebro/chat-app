@@ -1,7 +1,7 @@
 import { ThemeEnum } from "./theme-enum";
 
-export class Setting {
-  theme: ThemeEnum;
+export interface Settings {
+  theme: Omit<ThemeEnum, ThemeEnum.Auto>;
   enterToSend: boolean;
   mute: boolean;
   sortByContacts: boolean;
