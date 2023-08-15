@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Navigate, createBrowserRouter } from "react-router-dom";
 import Chat from "../component/Chat/Chat";
+import Login from "../page/Login";
 
 export const router = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ export const router = createBrowserRouter([
   {
     path: "about",
     element: <div>Nothing</div>
+  },
+  {
+    path: "login",
+    element: <Login/>
   },
   {
     path: "*",

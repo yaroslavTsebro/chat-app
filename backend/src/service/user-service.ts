@@ -66,7 +66,8 @@ class UserService extends ServiceHelper {
       const tokenPayload = new TokenPayload(
         createdUser._id.toString(),
         createdUser.email,
-        createdUser.isVerified
+        createdUser.isVerified,
+        createdUser.username
       );
 
       await this.createAndSendOtp(
@@ -112,14 +113,12 @@ class UserService extends ServiceHelper {
       const tokenPayload = new TokenPayload(
         currentUser._id.toString(),
         currentUser.email,
-        currentUser.isVerified
+        currentUser.isVerified,
+        currentUser.username
       );
 
       const tokens = Jwt.generateTokens(tokenPayload);
-      await TokenService.saveToken(
-        currentUser._id,
-        tokens.refreshToken
-      );
+      await TokenService.saveToken(currentUser._id, tokens.refreshToken);
 
       return { ...tokens, user: tokenPayload };
     } catch (e) {
@@ -170,7 +169,8 @@ class UserService extends ServiceHelper {
       const dto = new TokenPayload(
         user._id.toString(),
         user.email,
-        user.isVerified
+        user.isVerified,
+        user.username
       );
       const tokens = Jwt.generateTokens(dto);
       await TokenService.saveToken(user._id, tokens.refreshToken);

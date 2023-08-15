@@ -3,7 +3,7 @@ import { config } from "../config/config";
 import { AuthResponse } from "../entity/response/user/auth-response";
 
 const BASE_URL = config.server.url;
-const TOKEN_NAME = "accessToken";
+export const TOKEN_NAME = "chat_accessToken";
 
 const $host = axios.create({
   baseURL: process.env.REACT_APP_API_URL,

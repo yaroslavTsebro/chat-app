@@ -1,6 +1,7 @@
 import { DEFAULT_SETTINGS } from "../const/default-settings";
 import { Settings } from "../entity/model/settings";
 import { ThemeEnum } from "../entity/model/theme-enum";
+import { useLocalStorage } from "./use-local-storage";
 
 export function useSettings(): [Settings, (settings: Settings) => void] {
   const [settings, setSettings] = useLocalStorage<Settings>(
@@ -11,7 +12,7 @@ export function useSettings(): [Settings, (settings: Settings) => void] {
   const settingsCopy: Settings = {
     ...DEFAULT_SETTINGS,
     ...settings,
-    theme: parseTheme(settings.themeRaw ?? DEFAULT_SETTINGS.theme),
+    theme: parseTheme(settings.themeRaw ?? DEFAULT_SETTINGS.themeRaw),
   };
 
   return [settingsCopy, setSettings];
